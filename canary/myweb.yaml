@@ -1,0 +1,45 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: myweb
+    name: myweb
+    namespace: canary
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+
+  selector:
+    matchLabels:
+      app: myweb
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      containers:
+      - image: "deathstrock47/feature:latest"
+        imagePullPolicy: Always
+        name: myweb
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: myweb
+    name: myweb
+    namespace: canary
+spec:
+  ports:
+  - nodePort: 32001
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: myweb
+  type: NodePort
