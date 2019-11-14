@@ -19,12 +19,12 @@ pipeline {
       }
     }
     
-    stage('Build and push image with Container Builder') {
+    stage('Build and push') {
       steps {
         script {
           sh "cd $BRANCH"
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
-          BUILD = "$registry:$BUILD_NUMBER"
+          //BUILD = "$registry:$BUILD_NUMBER"
           docker.withRegistry( "" , registryCredential ) {
             dockerImage.push()
           }
