@@ -27,6 +27,7 @@ pipeline {
                 }
             }
         }
+    }
     stage('Build and push') {
       steps {
         script {
@@ -66,4 +67,4 @@ pipeline {
     }
   }
 }
-}
+
