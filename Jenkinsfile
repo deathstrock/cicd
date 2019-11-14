@@ -8,7 +8,7 @@ pipeline {
     registryCredential = "dockerhub"
   }
 
-  agent any {
+  agent any 
 
   stages {
 
@@ -57,5 +57,4 @@ pipeline {
     //  }
     //}
   }
-}
 }
