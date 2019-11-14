@@ -40,7 +40,7 @@ pipeline {
     stage('Stagging') {
         steps {
           script {
-            sh (sed 's/namespace: /namespace: '"$namespace"'/g' myweb.yaml)
+            //sh (sed 's/namespace: /namespace: '"$namespace"'/g' myweb.yaml)
              //sed  "s/nodePort: /nodePort: $port/ myweb.yaml"
              //sed  "s/image: /- image: $BUILD/"
             kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
