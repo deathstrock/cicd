@@ -31,7 +31,7 @@ pipeline {
         script {
           sh 'cd production'
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
-          //BUILD = "$registry:$BUILD_NUMBER"
+            BUILD = "$registry:$BUILD_NUMBER"
           docker.withRegistry( "" , registryCredential ) {
             dockerImage.push()
           }
@@ -49,6 +49,7 @@ pipeline {
       // Production branch
       when { branch 'master' }
       steps{
+        build = "$BUILD"
         kubernetesDeploy(configs: "production/myweb.yaml", kubeconfigId: "mykubeconfig")
       }
     }
