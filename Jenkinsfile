@@ -11,14 +11,22 @@ pipeline {
   agent any 
 
   stages {
-
+    
     stage('Checkout Source') {
       steps {
         git 'https://github.com/deathstrock/cicd.git'
         sh "git checkout $BRANCH "
       }
     }
-    
+    stages {
+        stage('Build') {
+            steps {
+                nodejs(nodeJSInstallationName: 'Node 13.x') {
+                    sh 'cd canary'
+                    sh 'npm install'
+                }
+            }
+        }
     stage('Build and push') {
       steps {
         script {

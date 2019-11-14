@@ -1,2 +1,5 @@
-FROM httpd:2.4
-COPY ./index.html /usr/local/apache2/htdocs/
+FROM node
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD ["npm", "start"] 
