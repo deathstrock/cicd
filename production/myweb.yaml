@@ -5,7 +5,7 @@ metadata:
   labels:
     app: myweb
     name: myweb
-    namespace: canary
+    namespace: production
 spec:
   replicas: 2
   strategy:
@@ -22,7 +22,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: "deathstrock47/feature:latest"
+      - image: "deathstrock47/staging:latest"
         imagePullPolicy: Always
         name: myweb
 
@@ -33,10 +33,10 @@ metadata:
   labels:
     app: myweb
     name: myweb
-    namespace: canary
+    namespace: production
 spec:
   ports:
-  - nodePort: 32001
+  - nodePort: 32003
     port: 80
     protocol: TCP
     targetPort: 80
