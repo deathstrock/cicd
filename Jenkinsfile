@@ -49,7 +49,7 @@ pipeline {
       // Production branch
       when { branch 'master' }
       steps{
-        build = "$BUILD"
+        BUILD = "$BUILD"
         kubernetesDeploy(configs: "production/myweb.yaml", kubeconfigId: "mykubeconfig")
       }
     }

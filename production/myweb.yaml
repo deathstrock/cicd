@@ -22,7 +22,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: "deathstrock47/production:{{build}}"
+      - image: "deathstrock47/production:{{BUILD}}"
         imagePullPolicy: Always
         name: myweb
 
