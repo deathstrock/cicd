@@ -18,15 +18,13 @@ pipeline {
         sh "git checkout $BRANCH "
       }
     }
-    stages {
-        stage('Build') {
-            steps {
-                nodejs(nodeJSInstallationName: 'Node 13.x') {
-                    sh 'cd canary'
-                    sh 'npm install'
-                }
-            }
-        }
+    stage('Build') {
+      steps {
+          nodejs(nodeJSInstallationName: 'Node 13.x') {
+              sh 'cd canary'
+              sh 'npm install'
+          }
+      }
     }
     stage('Build and push') {
       steps {
